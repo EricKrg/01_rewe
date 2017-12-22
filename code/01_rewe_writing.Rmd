@@ -1,0 +1,107 @@
+---
+title: "REWE location scraping & logistics"
+subtitle: "Assignment 01"
+author: "Eric Krueger"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+    toc: yes
+    toc_depth: 4
+    #toc_float: true
+    bibliography: 01_rewe.bib
+---
+```{r "setup", include=FALSE}
+require("knitr")
+opts_knit$set(root.dir = "C:/Users/Eric/Desktop/404/01_rewe/")
+```
+```{r Data, include=FALSE}
+pacman::p_load(sp, sf, rgdal, tidyverse, leaflet,TSP, fields, dismo, mapview)
+setwd("C:/Users/Eric/Desktop/404/01_rewe/")
+dir_main <- "."
+dir_ima = file.path(dir_main, "images")
+load(file.path(dir_ima, "all.Rdata")) #from 02_Data.R
+```
+
+#1 Introduction 
+
+Task of this assignment was to demonstrate the ability to use R as vector GIS. Therefore basic programming- and spatial-concepts, of GIScience where applied. This assignments covers the operational use of geo-web-scraping, geoprocessing (topology, geocoding,distance weighting etc.) as well as the application of different TSP (traveling salesman problem) algorithmns and a correspondending routing to the best TSP tour. These functions were used to retrieve and locate all german REWE stores (german supermarket franchise), as well as to find the best routing between a subset of at least 15 stores within a postcode-area (and the next order neighbors). 
+
+#2 Data and Methods
+
+Bla Bla bla
+
+###2.1 Web Scraping
+Bla Bla bla
+
+###2.2 Spatial Operations
+
+#3 Results
+
+###3. 1 Web Scraping
+
+![**fig.1:** All german rewe stores.](C:/Users/Eric/Desktop/404/01_rewe/figures/home.png)
+
+
+###3.2 Spatial Operations
+```{r mapview, echo=FALSE}
+home_plot[[length(home_plot)]]
+```
+**fig.2:** Home PLZ and next order neighbors.
+
+###3.3 Traveling Sales man Problem
+
+![**fig.3:** Performance difference of  TSP-Methods.](C:/Users/Eric/Desktop/404/01_rewe/figures/tour_rank.png)
+
+```{r mapview2, echo=FALSE}
+tours
+```
+**fig.4:** Fastest and worst TSP tour.
+
+###3.4 Routing
+
+```{r mapview3, echo=FALSE}
+routing
+```
+
+bla bla bla
+
+#Discussion
+
+#Literature
+
+
+
+## Your Familiar Tools
+
+Feel free to use the `knitr` infrastructure with dozens of tunable options in
+your document.
+
+```{r fig.width=6, fig.height=6, fig.align='center'}
+set.seed(123)
+n <- 1000
+x1  <- matrix(rnorm(n), ncol = 2)
+x2  <- matrix(rnorm(n, mean = 3, sd = 1.5), ncol = 2)
+x   <- rbind(x1, x2)
+head(x)
+smoothScatter(x, xlab = "x1", ylab = "x2")
+```
+
+You can include code snippets of languages other than R, but note that
+the block header has no curly brackets around the language name.
+
+```cpp
+// [[Rcpp::export]]
+NumericVector timesTwo(NumericVector x) {
+    return x * 2;
+}
+```
+
+You can also write math expressions, e.g. $Y = X\beta + \epsilon$,
+footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
+
+```{r, echo=FALSE, results='asis'}
+knitr::kable(head(iris, 10))
+```
+
